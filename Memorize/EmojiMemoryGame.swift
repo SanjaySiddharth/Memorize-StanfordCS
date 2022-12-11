@@ -9,9 +9,10 @@
 import SwiftUI
 
 class EmojiMemoryGame: ObservableObject{
-    static let emojis = ["🚗","🏎️","🚙","🚒","🚜","🚠","🚄","🛺","🚑","🚀","✈️","🚲","🦼","🚛","🚁"]
-    static func createMemoryGame() -> MemoryGame<String>{
-        MemoryGame(numberOfPairsOfCards: 4, createCardContent: {index in
+    typealias Card = MemoryGame<String>.Card
+    private static let emojis = ["🚗","🏎️","🚙","🚒","🚜","🚠","🚄","🛺","🚑","🚀","✈️","🚲","🦼","🚛","🚁"]
+    private static func createMemoryGame() -> MemoryGame<String>{
+        MemoryGame(numberOfPairsOfCards: 7, createCardContent: {index in
                     EmojiMemoryGame.emojis[index]
             })
     }
@@ -21,13 +22,13 @@ class EmojiMemoryGame: ObservableObject{
     // privare -> only this ViewModel can see this model and do changes!
     // private(set) -> other classes can view this model but cant make changes
     
-    var cards: Array<MemoryGame<String>.Card>{
+    var cards: Array<Card>{
         return model.cards
     }
     
     //MARK: Intents
     
-    func choose(card:MemoryGame<String>.Card){
+    func choose(card:Card){
         model.choose(card)
     }
 }
