@@ -38,13 +38,8 @@ struct MemoryGame<CardContent> where CardContent: Equatable{
         }
     }
         
-    func index(of card:Card)->Int?{
-        for index in 0..<cards.count{
-            if(cards[index].id == card.id){
-                return index
-            }
-        }
-        return nil
+    mutating func shuffle(){
+        cards.shuffle()
     }
     init(numberOfPairsOfCards:Int,createCardContent: (Int)->CardContent){
         cards = []
@@ -53,16 +48,72 @@ struct MemoryGame<CardContent> where CardContent: Equatable{
             cards.append(Card(content: content,id: pairIndex*2))
             cards.append(Card(content: content,id: pairIndex*2+1))
         }
+        cards.shuffle()
     }
     struct Card: Identifiable{
-        var isFaceUp: Bool=false
-        var isMatched: Bool=false
+        var isFaceUp: Bool=false{
+            didSet{
+                if isFaceUp {
+                    startUsingBonusTime()
+                }
+                else{
+                    stopUsingBonusTime()
+                }
+            }
+        }
+        var isMatched: Bool=false{
+            didSet{
+                stopUsingBonusTime()
+            }
+        }
         var content: CardContent        //CardContent is a dont-care element
         var id: Int
+        
+        //FOR BONUS TIME IMPLEMENTATION:
+        var bonusTimeLimit : TimeInterval = 6
+        private var faceUpTime : TimeInterval {
+            if let lastFaceUpDate = self.lastFaceUpDate{
+                return pastFaceUpTime + Date().timeIntervalSince(lastFaceUpDate)
+            }
+            else{
+                return pastFaceUpTime
+            }
+        }
+        var lastFaceUpDate : Date?
+        var pastFaceUpTime : TimeInterval = 0
+        var bonusTimeRemaining : TimeInterval{
+            max(0,bonusTimeLimit - faceUpTime)
+        }
+        var bonusRemaining: Double {
+            (bonusTimeLimit > 0 && bonusTimeRemaining > 0) ? bonusTimeRemaining/bonusTimeLimit : 0
+        }
+        var hasEarnedBonus : Bool {
+            isMatched && bonusTimeRemaining > 0
+        }
+        var isConsumingBonusTime : Bool {
+            isFaceUp && !isMatched && bonusTimeRemaining>0
+        }
+        private mutating func startUsingBonusTime(){
+            if isConsumingBonusTime , lastFaceUpDate == nil {
+                lastFaceUpDate = Date()
+            }
+        }
+        private mutating func stopUsingBonusTime(){
+            pastFaceUpTime = faceUpTime
+            lastFaceUpDate = nil
+        }
+        
+    }
+
 
     }
     
-}
+    
+
+
+
+
+
 extension Array{
     var oneAndOnly : Element? {
         return (self.count == 1 ? self.first : nil)      // Tenery operator for if-else
