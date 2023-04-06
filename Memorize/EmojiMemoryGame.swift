@@ -9,11 +9,13 @@
 import SwiftUI
 
 class EmojiMemoryGame: ObservableObject{
+    @EnvironmentObject var theme : ThemeStore
     typealias Card = MemoryGame<String>.Card
-    private static let emojis = ["🚗","🏎️","🚙","🚒","🚜","🚠","🚄","🛺","🚑","🚀","✈️","🚲","🦼","🚛","🚁"]
+//    private static let emojis = ["🚗","🏎️","🚙","🚒","🚜","🚠","🚄","🛺","🚑","🚀","✈️","🚲","🦼","🚛","🚁"]
+    private static let defaultTheme : Theme = ThemeStore(name: "Default").returnInitialTheme()
     private static func createMemoryGame() -> MemoryGame<String>{
         MemoryGame(numberOfPairsOfCards: 6, createCardContent: {index in
-                    EmojiMemoryGame.emojis[index]
+                    EmojiMemoryGame.defaultTheme[index]
             })
     }
     @Published private var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
