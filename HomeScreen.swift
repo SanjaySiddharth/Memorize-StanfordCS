@@ -13,6 +13,7 @@ struct HomeScreen: View {
         NavigationView{
             List(themeStore.themes){theme in
                 NavigationLink(theme.name, destination: EmojiMemoryGameView(game: EmojiMemoryGame(theme: theme)))
+                    .padding(.all)
             }
             
             
