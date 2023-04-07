@@ -35,11 +35,11 @@ class ThemeStore : ObservableObject {
         retrieveUserData()
         if themes.isEmpty {
             print("Using in-built themes")
-            insertTheme(name: "Vehicles", color: 1, emojis: ["🚗","🏎️","🚙","🚒","🚜","🚠","🚄","🛺","🚑","🚀","✈️","🚲","🦼","🚛","🚁"])
             insertTheme(name: "Animals", color: 2, emojis: ["🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐻‍❄️"])
+            insertTheme(name: "Vehicles", color: 1, emojis: ["🚗","🏎️","🚙","🚒","🚜","🚠","🚄","🛺","🚑","🚀","✈️","🚲","🦼","🚛","🚁"])
         }
         else{
-            print("Successfully loaded palettes from User Data")
+            print("Successfully loaded palettes from User Data and theme store : \(name)")
         }
     }
     let name : String

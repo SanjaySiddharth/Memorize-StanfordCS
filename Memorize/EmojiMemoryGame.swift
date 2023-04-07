@@ -9,17 +9,22 @@
 import SwiftUI
 
 class EmojiMemoryGame: ObservableObject{
-    @EnvironmentObject var theme : ThemeStore
+    @Published private var model: MemoryGame<String>
+    let chosenTheme : Theme 
+    
     typealias Card = MemoryGame<String>.Card
 //    private static let emojis = ["🚗","🏎️","🚙","🚒","🚜","🚠","🚄","🛺","🚑","🚀","✈️","🚲","🦼","🚛","🚁"]
-    private static let defaultTheme : Theme = ThemeStore(name: "Default").returnInitialTheme()
-    private static func createMemoryGame() -> MemoryGame<String>{
-        MemoryGame(numberOfPairsOfCards: 6, createCardContent: {index in
-                    EmojiMemoryGame.defaultTheme[index]
-            })
+    private static func createMemoryGame(of theme : Theme) -> MemoryGame<String>{
+            let emojis = theme.emojis.map{String($0)}.shuffled()
+        return MemoryGame(numberOfPairsOfCards: theme.emojis.count){
+            index in
+            emojis[index]
+        }
     }
-    @Published private var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
-        
+    init(theme: Theme) {
+        chosenTheme = theme
+        model = EmojiMemoryGame.createMemoryGame(of: chosenTheme)
+    }
     
     // privare -> only this ViewModel can see this model and do changes!
     // private(set) -> other classes can view this model but cant make changes
@@ -37,6 +42,6 @@ class EmojiMemoryGame: ObservableObject{
         model.shuffle()
     }
     func restart(){
-        model = EmojiMemoryGame.createMemoryGame()
+        model = EmojiMemoryGame.createMemoryGame(of: chosenTheme)
     }
 }

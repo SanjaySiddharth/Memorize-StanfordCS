@@ -166,7 +166,8 @@ private func scale (thatFits size : CGSize)->CGFloat{
 
 struct EmojiMemoryGameView_Previews: PreviewProvider {
     static var previews: some View {
-        let game = EmojiMemoryGame()
+        
+        let game = EmojiMemoryGame(theme: ThemeStore(name: "Default").themes[0])
         EmojiMemoryGameView(game:game)
     }
 }

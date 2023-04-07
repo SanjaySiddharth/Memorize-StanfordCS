@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct HomeScreen: View {
+    @EnvironmentObject var themeStore : ThemeStore
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView{
+            List(themeStore.themes){theme in
+                NavigationLink(theme.name, destination: EmojiMemoryGameView(game: EmojiMemoryGame(theme: theme)))
+            }
+            
+            
+        }
     }
 }
 
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen()
+            .environmentObject(ThemeStore(name: "Default"))
     }
 }
