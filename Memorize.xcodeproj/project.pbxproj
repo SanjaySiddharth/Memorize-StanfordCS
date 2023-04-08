@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C61C1EF829D4A3C000CD4100 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C1EF729D4A3C000CD4100 /* HomeScreen.swift */; };
+		C61C1EFA29E17F3F00CD4100 /* ThemeEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C1EF929E17F3F00CD4100 /* ThemeEditorView.swift */; };
 		C6235F492945A54900E616CC /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6235F482945A54900E616CC /* AspectVGrid.swift */; };
 		C635B3092945E05100BE9626 /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = C635B3082945E05100BE9626 /* Pie.swift */; };
 		C635B35B2955907B00BE9626 /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = C635B35A2955907B00BE9626 /* Cardify.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		C61C1EF729D4A3C000CD4100 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = SOURCE_ROOT; };
+		C61C1EF929E17F3F00CD4100 /* ThemeEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEditorView.swift; sourceTree = SOURCE_ROOT; };
 		C6235F482945A54900E616CC /* AspectVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
 		C635B3082945E05100BE9626 /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
 		C635B35A2955907B00BE9626 /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 		C67E5FDE2934C65E00019280 /* Memorize */ = {
 			isa = PBXGroup;
 			children = (
+				C61C1EF929E17F3F00CD4100 /* ThemeEditorView.swift */,
 				C61C1EF729D4A3C000CD4100 /* HomeScreen.swift */,
 				C67E5FDF2934C65E00019280 /* MemorizeApp.swift */,
 				C67E5FE12934C65E00019280 /* EmojiMemoryGameView.swift */,
@@ -165,6 +168,7 @@
 				C67E5FE22934C65E00019280 /* EmojiMemoryGameView.swift in Sources */,
 				C61C1EF829D4A3C000CD4100 /* HomeScreen.swift in Sources */,
 				C67E5FE02934C65E00019280 /* MemorizeApp.swift in Sources */,
+				C61C1EFA29E17F3F00CD4100 /* ThemeEditorView.swift in Sources */,
 				C6235F492945A54900E616CC /* AspectVGrid.swift in Sources */,
 				C66CF461293DC739008B1717 /* EmojiMemoryGame.swift in Sources */,
 			);
